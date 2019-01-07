@@ -1,0 +1,41 @@
+word={ 1:'One',2:'Two',3:'Three',4:'Four',5:'Five',6:'Six',7:'Seven',8:'Eight',9:'Nine',10:'Ten',11:'Eleven',12:'Twelve',13:'Thirteen',14:'Fourteen',15:'Fifteen',16:'Sixteen',17:'Seventeen',18:'Eighteen',19:'Nineteen',20:'Twenty',30:'Thirty',40:'Forty',50:'Fifty',60:'Sixty',70:'Seventy',80:'Eighty',90:'Ninety'};
+digit=['Thousand','Million','Billion','Trillion','Quadrillion']
+test=int(input())
+for case in range(0,test):
+  arr=input()
+  arr=int(arr)
+  arr=str(arr)
+  l=len(arr)
+  count=l
+  answer=''
+  if(int(arr)==0):
+    print("Zero")
+  else:
+    if(l%3!=0):
+        n=arr[0:l%3]
+        k=l%3
+    else:
+        n=arr[0:3]
+        k=3
+    while(count>0):
+        l=len(n)
+        if(l>2)and(int(n[l-3:])!=0)and(n[0]!='0'):
+           answer+=(word[int(n[0])]+' Hundred ')
+        if(int(n[l-2:])!=0):
+            if(int(n[l-2:])<20)or(int(n[l-2:])%10==0):
+                answer+=(word[int(n[l-2:])]+" ")
+            else:
+                answer+=(word[int(n[l-2])*10]+" "+word[int(n[l-1])]+" ")
+        if(int(n)!=0)and(((count-1)//3)!=0):
+            answer+=(digit[(((count-1)//3))-1]+" ")
+        count-=3
+        n=arr[k:k+3]
+        k+=3
+    if(len(answer)!=0):
+      if(answer[len(answer)-1]==' '):
+        print(answer[0:len(answer)-1])
+      else:
+        print(answer)
+        
+  
+    
